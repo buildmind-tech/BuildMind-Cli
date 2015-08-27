@@ -1,12 +1,14 @@
 #! /usr/bin/env node
 
-var path = require('path'),
-    fs = require('fs'),
-    exec = require('child_process').exec;
+var path = require('path');
+var fs = require('fs');
+var exec = require('child_process').exec;
 
 var argv = require('minimist')(process.argv.slice(2));
-console.dir(argv);
 
+if (process.argv.length==2 || argv.h || argv.help || argv._[0]=="help") {
+	require('./lib/help')(argv);
+}
 
 // version
 if (argv.v) {
