@@ -1,15 +1,11 @@
 # BuildMind-Cli  [![Build Status](https://travis-ci.org/buildmind-tech/BuildMind-Cli.svg?branch=master)](https://travis-ci.org/buildmind-tech/BuildMind-Cli)
 Command line tools for accessing buildmind products
 
-## Basic Commands
+## Screen shots
+![alt text](https://bu.ildm.in/d/images/buildmind-cli.png "BuildMind-Cli")
+![alt text](https://bu.ildm.in/d/images/buildmind-cli-drop.png "BuildMind-Cli")
 
-`mind`
 
-outputs the BuildMind-cli information
-
-`mind -v` 
-
-outputs the BuildMind-cli version
 
 ## Use MindDrop
 
@@ -21,7 +17,7 @@ Simply use
 
 And you will be promt for your username and password, done!
 
-## Install Development
+## Install And Development
 
 This product is currently in alpha phase, please clone and run
 
