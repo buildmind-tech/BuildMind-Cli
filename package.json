@@ -8,9 +8,11 @@
     "mind": "index.js"
   },
   "dependencies": {
+    "archiver": "^0.15.0",
     "colors": "^1.1.2",
     "minimist": "^1.2.0",
     "prompt": "^0.2.14",
-    "request": "^2.61.0"
+    "request": "^2.61.0",
+    "tmp": "0.0.27"
   }
 }

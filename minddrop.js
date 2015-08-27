@@ -1,38 +1,13 @@
 var fs=require('fs');
 var request = require('request');
 
-var auth=require('./auth');
+var auth=require('./lib/auth');
+var folder=require('./lib/folder')
 
-var uploadFile=function(path,authData){
 
-
-	// var form = {
-	//   // // Pass a simple key-value pair
-	//   // my_field: 'my_value',
-	//   // // Pass data via Buffers
-	//   // my_buffer: new Buffer([1, 2, 3]),
-	//   // Pass data via Streams
-	//   // file: fs.createReadStream(path),
-	//   // Pass multiple values /w an Array
-	//   // attachments: [
-	//   //   fs.createReadStream(__dirname + '/attachment1.jpg'),
-	//   //   fs.createReadStream(__dirname + '/attachment2.jpg')
-	//   // ],
-	//   // Pass optional meta-data with an 'options' object with style: {value: DATA, options: OPTIONS}
-	//   // Use case: for some types of streams, you'll need to provide "file"-related information manually.
-	//   // See the `form-data` README for more information about options: https://github.com/felixge/node-form-data
-	//   file: {
-	//     value:  fs.createReadStream(path),
-	//     options: {
-	//       filename: '',
-	//       contentType: 'image/jpg'
-	//     }
-	//   },
-	//   data:auth
-	// };
-
-	console.log('uploading using user '+authData.username);
-
+var uploadFile=function(path,authData,cleanTmp){
+	console.log(('Uploading using user '+authData.username).green);
+	console.log('Start uploading now'.green);
 	var req=request.post({
 		url:'http://drop.buildmind.org/upload',
 		form: form
@@ -42,17 +17,18 @@ var uploadFile=function(path,authData){
 		}
 
 		if (res.statusCode==200) {
-			console.log('Upload Successfully')
+			console.log('Upload Successfully');
+			if (cleanTmp) {
+				cleanTmp();
+			}
 		}
 		else {
 			console.log('Upload Failed');
 		}
 	});
-
 	var form=req.form();
 	form.append('file', fs.createReadStream(path),{filename: 'test.jpg'});
 	form.append('data', JSON.stringify(authData));
-	
 }
 
 module.exports=function(argv){
@@ -71,7 +47,20 @@ module.exports=function(argv){
 
 	    // Is it a directory?
 	    if (stats.isDirectory()) {
-	        console.log('you want to upload folder from '+file_path);
+	    	folder.archiver(file_path,function(complete,tmp_path,cleanTmp){
+	    		if (complete==true){
+	    			auth.check(function(err,authData){
+			    		uploadFile(tmp_path,authData,cleanTmp);
+			    	})		    			
+	    		}
+	    		else {
+	    			console.log('MindDrop doesn\'t support uploading unzipped folders')
+	    			return;
+	    		}
+
+	    		
+	    	})
+	        
 	    }
 	    else {
 	    	console.log('You are uploading the file : '+file_path);
