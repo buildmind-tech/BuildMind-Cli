@@ -1,4 +1,4 @@
-# BuildMind-Cli
+# BuildMind-Cli  [![Build Status](https://travis-ci.org/buildmind-tech/BuildMind-Cli.svg?branch=master)](https://travis-ci.org/buildmind-tech/BuildMind-Cli)
 Command line tools for accessing buildmind products
 
 ## Basic Commands
