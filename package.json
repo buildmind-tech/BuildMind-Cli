@@ -1,0 +1,19 @@
+{
+  "name": "buildmind-cli",
+  "version": "0.0.1",
+  "description": "Buildmind Commandline tools for accessing buildmind products",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JavaScript Playground",
+  "preferGlobal": true,
+  "bin": {
+    "mind": "index.js"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "minimist": "^1.2.0",
+    "prompt": "^0.2.14",
+    "request": "^2.61.0"
+  }
+}
