@@ -4,7 +4,9 @@ Command line tools for accessing buildmind products.
 ## Install
 You need npm for this, simply
 
-`npm install buildmind-cli`
+    npm install buildmind-cli -g
+
+Do use `-g` because buildmind-cli doesn't bring you any help in your node projects.
 
 ## Screen shots
 ![alt text](https://bu.ildm.in/d/images/buildmind-cli.png "BuildMind-Cli")
